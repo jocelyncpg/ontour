@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Apoderado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Crear Apoderado</h2>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="nombre">Nombre del Apoderado:</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="rut">RUT:</label>
+                <input type="text" class="form-control" name="rut" id="rut" required>
+            </div>
+            <div class="form-group">
+                <label for="curso_id">Curso:</label>
+                <select name="curso_id" id="curso_id" class="form-control" required>
+                    {% for curso in cursos %}
+                    <option value="{{ curso.id }}">{{ curso.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Apoderado</button>
+        </form>
+    </div>
+</body>
+</html>

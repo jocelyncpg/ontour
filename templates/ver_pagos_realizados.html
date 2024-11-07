@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Pagos Realizados</title>
+    <!-- Incluir Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .btn-back {
+            background-color: #dc3545;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-back:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Pagos Realizados</a>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 class="display-4">{{ curso.nombre }}</h1>
+        <p class="lead">Listado de los pagos ya realizados para este curso.</p>
+
+        <!-- Tabla de pagos realizados -->
+        <div class="card">
+            <div class="card-header">
+                Pagos Realizados
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha de Pago</th>
+                            <th scope="col">Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pago in pagos %}
+                        <tr>
+                            <td>{{ pago.fecha_pago }}</td>
+                            <td>${{ pago.monto }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Botón de retroceso -->
+        <a href="{{ url_for('detalle_curso', curso_id=curso.id) }}" class="btn btn-back mt-4">Volver al Curso</a>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Apoderado</title>
+    <!-- Incluir Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .btn-course {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-course:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Inicio Apoderado</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 class="display-4">Cursos Asociados</h1>
+        <p class="lead">Aquí puedes ver los cursos asociados a tu cuenta.</p>
+
+        <!-- Lista de cursos -->
+        <div class="list-group">
+            {% if cursos %}
+                {% for curso in cursos %}
+                <a href="{{ url_for('ver_detalles_curso', curso_id=curso.id) }}" class="list-group-item list-group-item-action btn-course">
+                    {{ curso.nombre }}
+                </a>
+                {% endfor %}
+            {% else %}
+                <p>No tienes cursos asociados.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

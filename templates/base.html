@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto On Tour</title>
+    <!-- Bootstrap CSS para un diseño responsivo y moderno -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body class="bg-light">
+    <header class="bg-primary text-white p-4">
+        <div class="container text-center">
+            <h1 class="font-weight-bold">Bienvenido a On Tour</h1>
+            <p>Explora nuestras ofertas de paquetes turísticos</p>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">Inicio</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <!-- Botón de inicio de sesión -->
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" href="/login">Iniciar sesión</a>
+                    </li>
+                    <!-- Botón para crear cuenta -->
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" href="/registro">Crear cuenta</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% block content %}
+        <!-- Este espacio se llenará con contenido específico de cada página -->
+        {% endblock %}
+
+        <!-- Sección de paquetes destacados -->
+        <div class="row mt-4">
+            <!-- Card para Torres del Paine -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://parquetorresdelpaine.cl/wp-content/uploads/2022/04/Torres-jose%CC%81-gonza%CC%81lez-copia-1024x687.jpg" class="card-img-top" alt="Torres del Paine">
+                    <div class="card-body">
+                        <h5 class="card-title">Torres del Paine</h5>
+                        <p class="card-text">Disfruta de un recorrido por uno de los parques más impresionantes de Chile, conocido por sus montañas y glaciares.</p>
+                        <p><strong>Precio:</strong> $500,000 CLP</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card para Bariloche -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://multidestinos.cl/wp-content/uploads/2024/08/Bariloche-Multidestinos.jpeg" class="card-img-top" alt="Bariloche">
+                    <div class="card-body">
+                        <h5 class="card-title">Bariloche</h5>
+                        <p class="card-text">Una ciudad en Argentina famosa por sus lagos, montañas y su arquitectura de estilo suizo.</p>
+                        <p><strong>Precio:</strong> $450,000 CLP</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card para Río de Janeiro -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://freewalkertours.com/wp-content/uploads/cosas-que-hacer-en-r%C3%ADo-cristo-redentor-1100x620.jpg" class="card-img-top" alt="Río de Janeiro">
+                    <div class="card-body">
+                        <h5 class="card-title">Río de Janeiro</h5>
+                        <p class="card-text">Explora las hermosas playas y la icónica estatua del Cristo Redentor en la vibrante ciudad de Río.</p>
+                        <p><strong>Precio:</strong> $600,000 CLP</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center p-4 mt-4">
+        <p>&copy; 2024 On Tour - Todos los derechos reservados</p>
+    </footer>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

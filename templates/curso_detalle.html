@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Curso</title>
+    <!-- Incluir Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .btn-pay {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-pay:hover {
+            background-color: #218838;
+        }
+        .btn-back {
+            background-color: #dc3545;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-back:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Detalles del Curso</a>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 class="display-4">{{ curso.nombre }}</h1>
+        <p class="lead">Información sobre el paquete contratado y pagos realizados.</p>
+
+        <!-- Información del curso -->
+        <div class="card">
+            <div class="card-header">
+                Información General del Paquete
+            </div>
+            <div class="card-body">
+                <p><strong>Descripción:</strong> {{ curso.descripcion }}</p>
+                <p><strong>Fecha de inicio:</strong> {{ curso.fecha_inicio }}</p>
+                <p><strong>Fecha de fin:</strong> {{ curso.fecha_fin }}</p>
+            </div>
+        </div>
+
+        <!-- Detalles de pagos -->
+        <div class="card mt-4">
+            <div class="card-header">
+                Detalles de Pagos
+            </div>
+            <div class="card-body">
+                <p><strong>Total a Pagar:</strong> {{ curso.total_a_pagar }}</p>
+                <p><strong>Total Ya Pagado:</strong> {{ curso.total_pagado }}</p>
+                <p><strong>Saldo Pendiente:</strong> {{ curso.saldo_pendiente }}</p>
+                <p><strong>Fecha Límite para Pago:</strong> {{ curso.fecha_limite_pago }}</p>
+            </div>
+        </div>
+
+        <!-- Botón para realizar un nuevo pago -->
+        <a href="{{ url_for('realizar_pago', curso_id=curso.id) }}" class="btn btn-pay mt-4">Realizar un Nuevo Pago</a>
+
+        <!-- Botón para ver pagos realizados -->
+        <a href="{{ url_for('ver_pagos_realizados', curso_id=curso.id) }}" class="btn btn-info mt-2">Ver Pagos Realizados</a>
+
+        <!-- Botón de retroceso -->
+        <a href="{{ url_for('apoderado_home') }}" class="btn btn-back mt-4">Volver al Inicio</a>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

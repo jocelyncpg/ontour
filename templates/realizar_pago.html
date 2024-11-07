@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar Pago</title>
+    <!-- Incluir Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .btn-back {
+            background-color: #dc3545;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-back:hover {
+            background-color: #c82333;
+        }
+        .btn-submit {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Realizar Pago</a>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 class="display-4">{{ curso.nombre }}</h1>
+        <p class="lead">Información sobre el curso y el pago pendiente.</p>
+
+        <!-- Información del pago pendiente -->
+        <div class="card">
+            <div class="card-header">
+                Información del Pago
+            </div>
+            <div class="card-body">
+                <p><strong>Total a Pagar:</strong> {{ curso.total_a_pagar }}</p>
+                <p><strong>Saldo Pendiente:</strong> {{ curso.saldo_pendiente }}</p>
+                <p><strong>Fecha Límite para Pago:</strong> {{ curso.fecha_limite_pago }}</p>
+            </div>
+        </div>
+
+        <!-- Formulario de pago -->
+        <div class="card mt-4">
+            <div class="card-header">
+                Realizar Nuevo Pago
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('realizar_pago', curso_id=curso.id) }}">
+                    <div class="form-group">
+                        <label for="monto_pago">Monto a Pagar</label>
+                        <input type="number" class="form-control" id="monto_pago" name="monto_pago" placeholder="Monto del pago" required min="1" max="{{ curso.saldo_pendiente }}">
+                    </div>
+                    <button type="submit" class="btn btn-submit">Realizar Pago</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Botón de retroceso -->
+        <a href="{{ url_for('detalle_curso', curso_id=curso.id) }}" class="btn btn-back mt-4">Volver al Curso</a>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

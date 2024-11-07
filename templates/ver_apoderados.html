@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Apoderados</title>
+    <!-- Incluir Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Fondo claro para la página */
+            color: #343a40; /* Color de texto */
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .table thead {
+            background-color: #007bff;
+            color: white;
+        }
+        .table tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        .table tbody tr:hover {
+            background-color: #e9ecef;
+        }
+        .btn-back {
+            background-color: #dc3545;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-back:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 class="display-4">Lista de Apoderados</h1>
+        <p class="lead">Aquí puedes ver todos los apoderados registrados en el sistema.</p>
+
+        <!-- Botón de retroceso -->
+        <a href="{{ url_for('ejecutivo_home') }}" class="btn btn-back mb-4">Volver al Inicio</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-back mb-4">Cerrar Sesión</a>
+
+        <!-- Card con tabla de apoderados -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Apoderados Registrados</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>RUT</th>
+                            <th>Curso Asociado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for apoderado in apoderados %}
+                        <tr>
+                            <td>{{ apoderado.nombre }}</td>
+                            <td>{{ apoderado.rut }}</td>
+                            <td>{{ apoderado.curso.nombre }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center">No hay apoderados registrados.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

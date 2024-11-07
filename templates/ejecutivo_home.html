@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejecutivo</title>
+    <!-- Incluir Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Fondo claro para la página */
+            color: #343a40; /* Color de texto */
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .btn-logout {
+            background-color: #dc3545;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-logout:hover {
+            background-color: #c82333;
+        }
+        .navbar {
+            margin-bottom: 30px;
+        }
+        .navbar-nav a {
+            color: #343a40;
+        }
+        .navbar-nav a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 class="display-4">Bienvenido, Ejecutivo</h1>
+        <p class="lead">{{ message }}</p>
+        <p>En esta sección puedes gestionar todos los cursos, apoderados y alumnos.</p>
+
+        <!-- Botones de acción -->
+        <div class="mt-4">
+            <a href="{{ url_for('crear_curso') }}" class="btn btn-success btn-lg">Crear Curso</a>
+            <a href="{{ url_for('crear_apoderado') }}" class="btn btn-primary btn-lg ml-3">Crear Apoderado</a>
+            <a href="{{ url_for('crear_alumno') }}" class="btn btn-info btn-lg ml-3">Crear Alumno</a>
+            <!-- Botón para ver la lista de apoderados -->
+            <a href="{{ url_for('ver_apoderados') }}" class="btn btn-warning btn-lg ml-3">Ver Apoderados</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-success btn-lg">Cerrar Sesión</a>
+      
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

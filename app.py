@@ -109,10 +109,12 @@ def ver_apoderados():
 
 # Vista para mostrar los detalles de un curso
 @app.route('/apoderado_home')
+@login_required
 def apoderado_home():
     apoderado = obtener_apoderado_actual()  # Obtener apoderado actual desde la sesión
     cursos = obtener_cursos_asociados(apoderado.id)  # Obtener los cursos asociados
     return render_template('apoderado_home.html', cursos=cursos)
+
 
 @app.route('/detalle_curso/<int:curso_id>')
 def detalle_curso(curso_id):
@@ -133,14 +135,17 @@ def ver_pagos_realizados(curso_id):
     pagos = obtener_pagos_realizados(curso_id)
     return render_template('ver_pagos_realizados.html', pagos=pagos)
 
+def obtener_cursos_asociados(apoderado_id):
+    apoderado = Apoderado.query.get(apoderado_id)
+    return apoderado.curso  # Devuelve el curso asociado al apoderado
+def obtener_pagos_realizados(curso_id):
+    return Pago.query.filter_by(curso_id=curso_id).all()
+# Función para obtener el apoderado actual basado en el usuario autenticado
 def obtener_apoderado_actual():
-    if 'apoderado_id' in session:  # Si el apoderado está logueado (almacenado en sesión)
-        apoderado_id = session['apoderado_id']
-        apoderado = Apoderado.query.get(apoderado_id)  # Asumiendo que Apoderado es tu modelo
-        return apoderado
-    else:
-        flash('No has iniciado sesión como apoderado', 'danger')
-        return redirect(url_for('login'))  # Redirige al login si no hay sesión activa
+    # Suponiendo que el correo del usuario es el mismo que el rut del apoderado
+    apoderado = Apoderado.query.filter_by(rut=current_user.email).first()  # Ajusta la relación según tu modelo
+    return apoderado
+
 
 @app.route('/crear_curso', methods=['GET', 'POST'])
 @login_required

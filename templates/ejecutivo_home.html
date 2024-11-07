@@ -31,6 +31,25 @@
         .navbar-nav a:hover {
             color: #007bff;
         }
+
+        /* Añadimos estilos para mejorar la responsividad de los botones */
+        .btn-lg {
+            width: 100%; /* Los botones ocuparán el 100% del ancho en pantallas pequeñas */
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 576px) {
+            .btn-lg {
+                width: auto; /* En pantallas medianas, los botones vuelven a su tamaño original */
+            }
+        }
+
+        /* Para botones en pantallas más grandes */
+        @media (min-width: 768px) {
+            .btn-lg {
+                width: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -41,15 +60,23 @@
         <p class="lead">{{ message }}</p>
         <p>En esta sección puedes gestionar todos los cursos, apoderados y alumnos.</p>
 
-        <!-- Botones de acción -->
-        <div class="mt-4">
-            <a href="{{ url_for('crear_curso') }}" class="btn btn-success btn-lg">Crear Curso</a>
-            <a href="{{ url_for('crear_apoderado') }}" class="btn btn-primary btn-lg ml-3">Crear Apoderado</a>
-            <a href="{{ url_for('crear_alumno') }}" class="btn btn-info btn-lg ml-3">Crear Alumno</a>
-            <!-- Botón para ver la lista de apoderados -->
-            <a href="{{ url_for('ver_apoderados') }}" class="btn btn-warning btn-lg ml-3">Ver Apoderados</a>
-            <a href="{{ url_for('logout') }}" class="btn btn-success btn-lg">Cerrar Sesión</a>
-      
+        <!-- Botones de acción con fila y columnas para organización responsiva -->
+        <div class="row mt-4">
+            <div class="col-12 col-sm-6 col-md-3 mb-3">
+                <a href="{{ url_for('crear_curso') }}" class="btn btn-success btn-lg">Crear Curso</a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 mb-3">
+                <a href="{{ url_for('crear_apoderado') }}" class="btn btn-primary btn-lg">Crear Apoderado</a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 mb-3">
+                <a href="{{ url_for('crear_alumno') }}" class="btn btn-info btn-lg">Crear Alumno</a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 mb-3">
+                <a href="{{ url_for('ver_apoderados') }}" class="btn btn-warning btn-lg">Ver Apoderados</a>
+            </div>
+            <div class="col-12 mb-3">
+                <a href="{{ url_for('logout') }}" class="btn btn-success btn-lg">Cerrar Sesión</a>
+            </div>
         </div>
     </div>
 
